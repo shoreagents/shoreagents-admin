@@ -25,7 +25,7 @@ const createWindow = () => {
       mainWindow.loadURL('app://-');
     });
   } else {
-    mainWindow.loadURL('http://localhost:3000');
+    mainWindow.loadURL('http://localhost:3001');
     mainWindow.webContents.openDevTools();
   }
 

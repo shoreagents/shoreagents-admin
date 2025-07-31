@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, Building, BarChart3, Users, UserCheck, Briefcase, Settings, Building2 } from "lucide-react"
+import { Home, Building, BarChart3, Users, UserCheck, Briefcase, Settings, Building2, Monitor, Wrench, DollarSign, Shield, Truck, MoreHorizontal } from "lucide-react"
 
 import {
   Sidebar,
@@ -62,6 +62,40 @@ const memberItems = [
   },
 ]
 
+// Tickets group items
+const ticketItems = [
+  {
+    title: "IT",
+    url: "/tickets/it",
+    icon: Monitor,
+  },
+  {
+    title: "Maintenance",
+    url: "/tickets/maintenance",
+    icon: Wrench,
+  },
+  {
+    title: "Finance",
+    url: "/tickets/finance",
+    icon: DollarSign,
+  },
+  {
+    title: "Admin",
+    url: "/tickets/admin",
+    icon: Shield,
+  },
+  {
+    title: "Transport",
+    url: "/tickets/transport",
+    icon: Truck,
+  },
+  {
+    title: "Others",
+    url: "/tickets/others",
+    icon: MoreHorizontal,
+  },
+]
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
 
@@ -87,7 +121,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-sm">Navigation</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-xs">NAVIGATION</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {/* Main navigation items */}
@@ -108,7 +142,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
         {/* Employees group */}
         <SidebarGroup>
-          <SidebarGroupLabel className="text-sm">Employees</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-xs">EMPLOYEES</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {employeeItems.map((item) => (
@@ -127,10 +161,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
         {/* Members group */}
         <SidebarGroup>
-          <SidebarGroupLabel className="text-sm">Members</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-xs">MEMBERS</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {memberItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild isActive={pathname === item.url}>
+                    <Link href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        {/* Tickets group */}
+        <SidebarGroup>
+          <SidebarGroupLabel className="text-xs">TICKETS</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {ticketItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild isActive={pathname === item.url}>
                     <Link href={item.url}>
